@@ -63,9 +63,11 @@ Flags are shared across all visitors.
   key metadata. Per-key writes mean concurrent toggles can't clobber each other.
 - **Idea IDs.** `build.py` derives a stable `id` from `sha1(date + title)`, so flags survive
   re-sorting and new ideas being appended.
-- **Consistency.** KV is eventually consistent — a flag set in one region can take up to ~60s to
-  appear in another. The UI updates optimistically and polls every 20s. If you need instant
-  cross-region consistency, swap KV for D1 or a Durable Object; only `worker/index.js` changes.
+- **Consistency.** KV is eventually consistent. Measured in practice: a flag takes ~13s to become
+  visible to a second viewer in the same region (KV propagation plus the Worker's 5s cache), and
+  the UI polls every 20s on top — so budget up to ~35s, more across regions. You always see your
+  own flags instantly, since writes are applied optimistically. If you want this to feel truly
+  live, swap KV for D1 or a Durable Object; only `worker/index.js` changes.
 
 ### Deploy the flags backend
 
