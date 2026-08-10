@@ -7,7 +7,7 @@ Usage:
     python3 build.py           # rebuild data + HTML
     python3 build.py --watch   # rebuild on file change (optional)
 """
-import re, json, os, sys, html
+import re, json, os, sys, html, hashlib
 from datetime import datetime
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -19,6 +19,18 @@ if not os.path.exists(LOG_PATH):
 DATA_PATH = os.path.join(BASE, "data", "ideas.json")
 TEMPLATE_PATH = os.path.join(BASE, "src", "index.html")
 OUTPUT_PATH = os.path.join(BASE, "index.html")
+# Worker static-assets directory (what `wrangler deploy` uploads)
+PUBLIC_PATH = os.path.join(BASE, "public", "index.html")
+
+
+def idea_id(date_str, title):
+    """Stable 12-hex id derived from date + title.
+
+    Used as the key for community flags, so it must not change when ideas are
+    re-sorted or new ideas are appended.
+    """
+    h = hashlib.sha1(f"{date_str}\x00{title}".encode("utf-8")).hexdigest()
+    return h[:12]
 
 
 def parse_log(log_path):
@@ -55,6 +67,7 @@ def parse_log(log_path):
             decision_norm = "OTHER"
 
         ideas.append({
+            "id": idea_id(date_str, title),
             "date": date_str,
             "title": title,
             "domain": field("Domain"),
@@ -98,9 +111,21 @@ def build():
     json_data = json.dumps(ideas, ensure_ascii=False)
     output = template.replace("/*__IDEAS_DATA__*/[]", f"/*__IDEAS_DATA__*/{json_data}")
 
-    with open(OUTPUT_PATH, "w") as f:
-        f.write(output)
-    print(f"  Wrote {OUTPUT_PATH} ({os.path.getsize(OUTPUT_PATH)} bytes)")
+    # Point the build at the flags Worker (needed when the page is hosted off-Worker,
+    # e.g. Vercel):  FLAGS_API=https://idea-dashboard.<sub>.workers.dev python3 build.py
+    flags_api = os.environ.get("FLAGS_API", "").rstrip("/")
+    if flags_api:
+        output = output.replace(
+            '<meta name="flags-api" content="">',
+            f'<meta name="flags-api" content="{html.escape(flags_api, quote=True)}">',
+        )
+        print(f"  Flags API → {flags_api}")
+
+    for path in (OUTPUT_PATH, PUBLIC_PATH):
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path, "w") as f:
+            f.write(output)
+        print(f"  Wrote {path} ({os.path.getsize(path)} bytes)")
     print("Done!")
 
 

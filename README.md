@@ -10,6 +10,7 @@ A warm-toned, easy-on-the-eyes dashboard for browsing **95 autonomously research
 - **Detail Overlay** — Click any card for a full-screen modal with problem, solution, audience, landscape research, competitors, demand signals, and refinement notes
 - **Filter & Search** — Filter by decision (Hit / Refined / Killed) and full-text search across titles, domains, problems, and solutions
 - **Live Stats** — Total ideas, hit rate, average uniqueness/demand scores
+- **🚩 Community Flags** — when2meet-style: set a display name, flag the ideas you think will work, and everyone sees who flagged what. Synced live via a Cloudflare Worker + KV.
 - **Warm Palette** — Designed for extended reading sessions; dark warm-brown background with orange/amber accents
 - **Zero Dependencies** — Self-contained single HTML file. No npm, no build step needed to deploy.
 
@@ -39,6 +40,9 @@ This parses `idea-research-log.md`, updates `data/ideas.json`, and rebuilds `ind
 ```
 idea-dashboard/
 ├── index.html          # Built output (self-contained, deploy this)
+├── public/index.html   # Same output, served by the Worker as a static asset
+├── worker/index.js     # Flags API (/api/flags) backed by Cloudflare KV
+├── wrangler.jsonc      # Worker config (assets + KV binding)
 ├── build.py            # Build script (parses log → JSON → HTML)
 ├── data/
 │   └── ideas.json      # Parsed idea data (95 entries)
@@ -46,6 +50,49 @@ idea-dashboard/
 │   └── index.html      # Template (with __IDEAS_DATA__ placeholder)
 ├── README.md
 └── .gitignore
+```
+
+## Community Flags
+
+Anyone can set a display name (stored in `localStorage`, shown publicly) and flag ideas.
+Flags are shared across all visitors.
+
+- **No accounts.** The name *is* the identity — same name, case-insensitive, means same person.
+  Renaming yourself migrates your existing flags.
+- **Storage.** One Cloudflare KV key per `(idea, person)`: `f:<ideaId>:<name>`, display name in
+  key metadata. Per-key writes mean concurrent toggles can't clobber each other.
+- **Idea IDs.** `build.py` derives a stable `id` from `sha1(date + title)`, so flags survive
+  re-sorting and new ideas being appended.
+- **Consistency.** KV is eventually consistent — a flag set in one region can take up to ~60s to
+  appear in another. The UI updates optimistically and polls every 20s. If you need instant
+  cross-region consistency, swap KV for D1 or a Durable Object; only `worker/index.js` changes.
+
+### Deploy the flags backend
+
+```bash
+npx wrangler login
+npx wrangler kv namespace create FLAGS     # paste the returned id into wrangler.jsonc
+python3 build.py                           # writes public/index.html
+npx wrangler deploy
+```
+
+`wrangler.jsonc` serves `public/` as static assets and routes `/api/flags` to the Worker, so the
+Worker URL alone is a complete deployment.
+
+### Pointing a Vercel-hosted page at the Worker
+
+When the page is served from Vercel (or GitHub Pages), the API is cross-origin — the build has to
+know the Worker URL. The Worker already sends `Access-Control-Allow-Origin: *`:
+
+```bash
+FLAGS_API=https://idea-dashboard.<subdomain>.workers.dev python3 build.py
+vercel deploy --prod
+```
+
+That bakes the URL into `<meta name="flags-api">`. For a one-off local override without rebuilding:
+
+```js
+localStorage.setItem('flagsApi', 'https://idea-dashboard.<subdomain>.workers.dev')
 ```
 
 ## Deploy

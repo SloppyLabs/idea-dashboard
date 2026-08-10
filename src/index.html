@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Flags backend. Leave empty when the Cloudflare Worker serves this page;
+     set to https://idea-dashboard.<subdomain>.workers.dev when hosting on Vercel. -->
+<meta name="flags-api" content="">
+
 <title>Idea Lab — Research Archive</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
@@ -419,6 +423,84 @@ body::before {
   font-size: 12px;
 }
 
+/* ─── FLAGS (when2meet-style) ─── */
+.identity {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 14px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; cursor: pointer;
+  font-size: 13px; font-weight: 600; color: var(--text-dim);
+  white-space: nowrap; transition: all 0.2s;
+}
+.identity:hover { border-color: var(--border-bright); color: var(--text); }
+.identity.set { color: var(--accent); border-color: var(--border-bright); }
+
+.card-flags {
+  display: flex; align-items: center; gap: 10px;
+  margin-top: 12px; padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.flag-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 12px; border-radius: 20px;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text-dim); font: inherit; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s; flex-shrink: 0;
+}
+.flag-btn:hover { border-color: var(--border-glow); color: var(--text); }
+.flag-btn.on {
+  background: var(--accent); border-color: var(--accent); color: #1a1410;
+  box-shadow: 0 2px 12px var(--accent-glow);
+}
+.flaggers { display: flex; gap: -4px; flex-wrap: wrap; align-items: center; }
+.avatar {
+  width: 24px; height: 24px; margin-left: -6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-bright) 100%);
+  border: 2px solid var(--surface-solid);
+  color: #1a1410; font-size: 10px; font-weight: 800;
+  display: grid; place-items: center;
+  font-family: 'JetBrains Mono', monospace;
+}
+.avatar.more { background: var(--surface-hover); color: var(--text-dim); }
+
+.name-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px; border-radius: 14px;
+  background: var(--accent-soft); border: 1px solid var(--border-bright);
+  color: var(--text); font-size: 13px; font-weight: 500;
+}
+.name-chip.me { background: var(--accent); color: #1a1410; border-color: var(--accent); }
+.flag-list { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+
+.name-modal { max-width: 420px; }
+.name-modal .modal-body { padding: 24px 32px 28px; max-height: none; }
+.name-modal input {
+  width: 100%; padding: 12px 16px; margin: 4px 0 16px;
+  background: rgba(0,0,0,0.25); border: 1px solid var(--border-bright);
+  border-radius: 10px; color: var(--text); font: inherit; font-size: 15px;
+}
+.name-modal input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.btn-primary {
+  width: 100%; padding: 11px; border: none; border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-bright));
+  color: #1a1410; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer;
+}
+.hint { font-size: 12px; color: var(--text-faint); line-height: 1.5; }
+
+.toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  background: var(--surface-elevated); border: 1px solid var(--border-bright);
+  color: var(--text); padding: 10px 18px; border-radius: 10px;
+  font-size: 13px; z-index: 300; box-shadow: var(--shadow-lg);
+  opacity: 0; pointer-events: none; transition: opacity 0.2s;
+}
+.toast.show { opacity: 1; }
+
+/* No flags backend reachable — hide the UI rather than offer dead buttons. */
+.flags-off .card-flags, .flags-off .identity, .flags-off .flag-section,
+.flags-off .chip[data-filter="FLAGGED"], .flags-off .chip[data-filter="MINE"] { display: none; }
+
 /* ─── EMPTY STATE ─── */
 .empty-state {
   grid-column: 1 / -1;
@@ -468,6 +550,7 @@ body::before {
       <span class="search-icon">🔍</span>
       <input type="text" id="search" placeholder="Search ideas, domains, problems..." />
     </div>
+    <div class="identity" id="identity" title="Your display name — everyone sees it">👤 <span id="identity-name">Set your name</span></div>
   </div>
 </div>
 
@@ -492,6 +575,14 @@ body::before {
     <span class="chip-dot" style="background:var(--kill)"></span>
     <span>Killed</span>
     <span class="count" id="count-KILLED">0</span>
+  </div>
+  <div class="chip" data-filter="FLAGGED">
+    <span>🚩 Flagged</span>
+    <span class="count" id="count-FLAGGED">0</span>
+  </div>
+  <div class="chip" data-filter="MINE">
+    <span>⭐ Mine</span>
+    <span class="count" id="count-MINE">0</span>
   </div>
 </div>
 
@@ -534,6 +625,22 @@ body::before {
   </div>
 </div>
 
+<!-- NAME MODAL -->
+<div class="modal-overlay" id="name-overlay">
+  <div class="modal name-modal">
+    <div class="modal-stripe" style="background:linear-gradient(90deg,var(--hit),var(--accent-bright))"></div>
+    <button class="modal-close" onclick="closeNameModal()">✕</button>
+    <div class="modal-header"><div class="modal-title">Who are you?</div></div>
+    <div class="modal-body">
+      <input type="text" id="name-input" maxlength="32" placeholder="Name or handle" autocomplete="off" />
+      <button class="btn-primary" onclick="saveName()">Save</button>
+      <p class="hint" style="margin-top:12px;">Public board — everyone sees this name next to the ideas you flag. Same name = same person, so pick something distinct.</p>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
 <!-- FOOTER -->
 <div class="footer">
   Built from the <span class="mono">idea-research-log.md</span> ·
@@ -546,6 +653,127 @@ const IDEAS = /*__IDEAS_DATA__*/[];
 // ─── State ───
 let activeFilter = 'ALL';
 let searchQuery = '';
+
+// ─── FLAGS (shared, when2meet-style) ───
+// Base URL of the flags Worker. Empty = same origin (when the Worker itself serves the page).
+// On Vercel/GitHub Pages, set the <meta name="flags-api"> content to the workers.dev URL.
+const API = ((document.querySelector('meta[name="flags-api"]') || {}).content
+  || localStorage.getItem('flagsApi') || '').replace(/\/$/, '') + '/api/flags';
+
+let FLAGS = {};                                    // ideaId -> [display names]
+let me = localStorage.getItem('idealab.name') || '';
+let pendingFlag = null;                            // idea id to flag after naming
+
+const normName = n => String(n || '').trim().replace(/\s+/g, ' ').toLowerCase();
+const flagsFor = id => FLAGS[id] || [];
+const iFlagged = id => !!me && flagsFor(id).some(n => normName(n) === normName(me));
+const initials = n => n.trim().split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase();
+
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+async function loadFlags() {
+  try {
+    const r = await fetch(API, { cache: 'no-store' });
+    if (!r.ok) throw new Error(r.status);
+    FLAGS = await r.json();
+    document.body.classList.remove('flags-off');
+    paintFlags();
+    updateCounts();
+  } catch {
+    // No backend reachable (opened from disk, or the Worker isn't deployed yet).
+    document.body.classList.add('flags-off');
+  }
+}
+
+async function toggleFlag(id) {
+  if (!me) { pendingFlag = id; openNameModal(); return; }
+  const on = !iFlagged(id);
+  const rest = flagsFor(id).filter(n => normName(n) !== normName(me));
+  FLAGS[id] = on ? [...rest, me].sort((a, b) => a.localeCompare(b)) : rest;
+  paintFlags();
+  updateCounts();
+  try {
+    const r = await fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, name: me, on }),
+    });
+    if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error || r.status);
+  } catch (e) {
+    toast('Could not save flag: ' + e.message);
+    loadFlags();
+  }
+}
+
+/** Repaint only flag bits, so polling never disturbs scroll or the grid. */
+function paintFlags() {
+  document.querySelectorAll('[data-flag-id]').forEach(btn => {
+    const id = btn.dataset.flagId;
+    btn.classList.toggle('on', iFlagged(id));
+    btn.querySelector('.fc').textContent = flagsFor(id).length;
+  });
+  document.querySelectorAll('[data-flaggers]').forEach(el => {
+    const names = flagsFor(el.dataset.flaggers);
+    el.innerHTML = names.slice(0, 5).map(n =>
+      `<span class="avatar" title="${escapeHtml(n)}">${escapeHtml(initials(n))}</span>`).join('')
+      + (names.length > 5 ? `<span class="avatar more">+${names.length - 5}</span>` : '');
+  });
+  const list = document.getElementById('modal-flag-list');
+  if (list) {
+    const names = flagsFor(list.dataset.id);
+    list.innerHTML = names.length
+      ? names.map(n => `<span class="name-chip${normName(n) === normName(me) ? ' me' : ''}">${escapeHtml(n)}</span>`).join('')
+      : '<span class="hint">Nobody yet — be the first.</span>';
+  }
+}
+
+// ─── IDENTITY ───
+function paintIdentity() {
+  const el = document.getElementById('identity');
+  document.getElementById('identity-name').textContent = me || 'Set your name';
+  el.classList.toggle('set', !!me);
+}
+
+function openNameModal() {
+  document.getElementById('name-input').value = me;
+  document.getElementById('name-overlay').classList.add('show');
+  document.getElementById('name-input').focus();
+}
+
+function closeNameModal() {
+  document.getElementById('name-overlay').classList.remove('show');
+  pendingFlag = null;
+}
+
+async function saveName() {
+  const next = document.getElementById('name-input').value.trim().replace(/\s+/g, ' ').slice(0, 32);
+  if (!next) return;
+  const prev = me;
+  me = next;
+  localStorage.setItem('idealab.name', me);
+  paintIdentity();
+  closeNameModal();
+
+  // Renaming carries your existing flags over to the new name.
+  if (prev && normName(prev) !== normName(next)) {
+    const mine = Object.keys(FLAGS).filter(id => FLAGS[id].some(n => normName(n) === normName(prev)));
+    await Promise.all(mine.flatMap(id => [
+      fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, name: prev, on: false }) }),
+      fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, name: next, on: true }) }),
+    ])).catch(() => toast('Some flags failed to move'));
+    await loadFlags();
+  }
+
+  paintFlags();
+  updateCounts();
+  if (pendingFlag) { const id = pendingFlag; pendingFlag = null; toggleFlag(id); }
+}
 
 // ─── Helpers ───
 function scoreColor(score) {
@@ -581,6 +809,8 @@ function updateCounts() {
   for (const idea of IDEAS) {
     if (counts[idea.decision] !== undefined) counts[idea.decision]++;
   }
+  counts.FLAGGED = IDEAS.filter(i => flagsFor(i.id).length).length;
+  counts.MINE = IDEAS.filter(i => iFlagged(i.id)).length;
   for (const [k, v] of Object.entries(counts)) {
     const el = document.getElementById('count-' + k);
     if (el) el.textContent = v;
@@ -648,7 +878,9 @@ function renderGridV2() {
   const grid = document.getElementById('grid');
   const filtered = [];
   IDEAS.forEach((idea, origIdx) => {
-    if (activeFilter !== 'ALL' && idea.decision !== activeFilter) return;
+    if (activeFilter === 'FLAGGED') { if (!flagsFor(idea.id).length) return; }
+    else if (activeFilter === 'MINE') { if (!iFlagged(idea.id)) return; }
+    else if (activeFilter !== 'ALL' && idea.decision !== activeFilter) return;
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       const haystack = (idea.title + ' ' + idea.domain + ' ' + idea.problem + ' ' + idea.solution).toLowerCase();
@@ -685,8 +917,14 @@ function renderGridV2() {
           <div class="score-bar"><div class="score-fill" style="width:${(idea.demand||0)*20}%;background:${scoreColor(idea.demand)}"></div></div>
         </div>
       </div>
+      <div class="card-flags">
+        <button class="flag-btn" data-flag-id="${idea.id}">🚩 <span class="fc">0</span></button>
+        <div class="flaggers" data-flaggers="${idea.id}"></div>
+      </div>
     </div>
   `).join('');
+
+  paintFlags();
 }
 
 // ─── MODAL ───
@@ -734,6 +972,11 @@ function openModal(idx) {
 
   const body = document.getElementById('modal-body');
   body.innerHTML = `
+    <div class="modal-section flag-section">
+      <h3>🚩 Who thinks this works</h3>
+      <button class="flag-btn" data-flag-id="${idea.id}">🚩 <span class="fc">0</span></button>
+      <div class="flag-list" id="modal-flag-list" data-id="${idea.id}"></div>
+    </div>
     <div class="modal-section">
       <h3>🎯 Problem</h3>
       ${formatField(idea.problem)}
@@ -764,6 +1007,7 @@ function openModal(idx) {
     </div>
   `;
 
+  paintFlags();
   document.getElementById('modal-overlay').classList.add('show');
   document.body.style.overflow = 'hidden';
 }
@@ -780,7 +1024,23 @@ document.getElementById('modal-overlay').addEventListener('click', (e) => {
 
 // Escape to close
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeModal();
+  if (e.key === 'Escape') { closeModal(); closeNameModal(); }
+});
+
+// ─── FLAG CLICKS (cards + modal) ───
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.flag-btn');
+  if (!btn) return;
+  e.stopPropagation();          // don't open the card's modal
+  toggleFlag(btn.dataset.flagId);
+}, true);
+
+document.getElementById('identity').addEventListener('click', openNameModal);
+document.getElementById('name-overlay').addEventListener('click', (e) => {
+  if (e.target.id === 'name-overlay') closeNameModal();
+});
+document.getElementById('name-input').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') saveName();
 });
 
 // ─── FILTERS ───
@@ -804,8 +1064,12 @@ document.getElementById('search').addEventListener('input', (e) => {
 });
 
 // ─── INIT ───
+paintIdentity();
 updateCounts();
 renderGridV2();
+loadFlags();
+setInterval(loadFlags, 20000);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) loadFlags(); });
 
 // ─── EVENT DELEGATION FOR CARDS ───
 document.getElementById('grid').addEventListener('click', (e) => {
