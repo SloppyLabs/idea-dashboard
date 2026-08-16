@@ -1,5 +1,22 @@
 [
   {
+    "id": "dcacea392f53",
+    "date": "2026-08-17 02:22",
+    "title": "Automated Detention-Time Evidence Capture & Invoice Recovery App for Small Trucking Carriers",
+    "domain": "transportation/logistics SaaS (vertical B2B, first entry in this domain)",
+    "problem": "Truck drivers sit unpaid at shipper/receiver docks for hours; detention pay ($35–$120/hr after a ~2hr free window) is agreed in rate confirmations but widely unpaid because tracking exact arrival/dock-in/departure times and invoicing with undisputable evidence is too much hassle for owner-operators and small carriers.",
+    "audience": "Owner-operators and small fleets (1–30 trucks) without dispatch staff; the driver-side app market.",
+    "solution": "A mobile app that passively GPS-geofences facility arrivals, timestamps detention, photo-documents conditions, auto-generates broker-ready invoices with GPS proof, tracks payment status, and auto-follows-up. Community dock/broker scorecards as data moat.",
+    "landscape": "- DockClaim ($49/mo, owner-operators, GPS-verified invoices, offline sync, launched 2026) publishes its own 5-way comparison: Detention Source ($5K–$50K/yr enterprise benchmarking), DMRG (free–$9.99/mo manual logging), McLeod TMS ($10K+/yr), Toro TMS ($3K–$15K/yr), Samsara ($30–$45/vehicle/mo via ELD) — dockclaim.com/compare/detention-tracking-software\n- DetentionTime (\"operating system for detention revenue recovery\", claims 2,847+ drivers, $2.4M recovered, AI claim builder, broker scorecards, 94% claim approval) — detentiontime.com\n- GetDockPay (free early access, GPS dock-time tracking + \"Dock Score\"/\"Broker Pay Score\" community scores) and DMRG (free app, real-time shipper notification, dashboards) both launched — getdockpay.com, detentionpay.com\n- Toro TMS and CloudTMS both publish \"driver detention management software\" guides listing 7+ tools; Shipend does broker-side truckload freight audit including detention validation — torotms.com, shipend.com\n- Pain is real and quantified: US DOT estimates $1.1B+/yr lost from driver wages to detention; innovative logistics group cites $15.1B/yr industry cost; <50% of detention invoices get paid due to poor documentation.",
+    "competitors": "DockClaim, DetentionTime, GetDockPay, DMRG (Detention Pay), Detention Buddy, Add On Systems DriverDetentionPay, Detention Source (enterprise), DwellPaid (escalation content), plus detention modules inside McLeod/Toro/CloudTMS/Samsara and broker-side validation tools (Laneproof, Shipend). No wedge left uncovered.",
+    "demand_signals": "",
+    "decision": "KILLED",
+    "decision_raw": "KILLED",
+    "uniqueness": 1,
+    "demand": 4,
+    "refinement": "Killed for saturation, not lack of pain. The only adjacent un-attacked angles spotted: (a) escalation/arbitration automation (TIA arbitration + FMCSA complaint filing as a service — DwellPaid has blog content but no product), and (b) carrier-side detention validation (Laneproof/Shipend serve brokers; the mirror image for carriers disputing short-paid accessorial deductions). Not pursued this run."
+  },
+  {
     "id": "8097f8a2c75d",
     "date": "2026-08-16 00:20",
     "title": "Parent-Side \"AI IEP Advocate\" — document analysis, rights explainer & meeting-prep copilot for special-education parents",
