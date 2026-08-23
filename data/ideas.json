@@ -68,6 +68,23 @@
     "refinement": "Killed for saturation. 2025–2026 saw a wave of entrants (Complaya founded 2025; ReclaimSLA launched Feb 2026; Next Signal and AllCaps already at SOC-2/enterprise maturity). No defensible wedge identified: even the SMB/startup segment is served by Cloud-Credits' free playbooks + StatusGator outage alerts, and the \"obvious LLM automation\" angle is already publicly discussed on HN. A new entrant would need 10x better detection data than incumbents to matter — thin basis for a solo build."
   },
   {
+    "id": "cc9b14b9ccf1",
+    "date": "2026-08-23 18:30",
+    "title": "Automated Sample-Clearance Pipeline for Music Producers (\"drop your beat → we identify the sample, find both rights holders, and send the clearance request\")",
+    "domain": "creative tools / music-tech",
+    "problem": "Clearing a music sample requires manually identifying the recording, then separately negotiating with the master owner AND the publishing rights holder — a process costing $hundreds–$50k+, 15–50% royalty splits, and months of cold emails, so most indie producers either skip clearance (lawsuit/takedown risk) or abandon the track.",
+    "audience": "Independent hip-hop/electronic producers and indie labels releasing sample-based music without a lawyer or label clearance department.",
+    "solution": "A web app where producers upload a track; audio fingerprinting (ACRCloud/AudD) identifies the sampled recording; rights-holder lookup crosses PRO databases (BMI/ASCAP/SESAC), MusicBrainz, Discogs, and the Copyright Office; contact-finding surfaces the licensing inbox; and a professional clearance request is auto-sent with a response portal. Charge a subscription + success fee on closed deals.",
+    "landscape": "- **Sampleton (trysampleton.com) is this exact product, feature-for-feature**: fingerprint ID (ACRCloud + AudD, claims 95% ID rate), master rights via Discogs/AllMusic, publishing via BMI→ASCAP→SESAC→MusicBrainz→Copyright Office + 10 intl PROs, contact finding via Hunter.io/Clearbit/RocketReach, auto-sent clearance request with token-gated portal, \"<3min upload→request sent\". Pricing: Free (3 req/mo), $9/mo Starter, $29/mo Pro + 12% fee on closed deals only (verified from their live pricing page).\n- **Tracklib** is the dominant \"avoid the problem\" alternative — 100k+ pre-cleared records/stems/loops you can license upfront (verified from homepage), plus **Sampy (sampy.app)**, **brYdge**, **Ample Samples**, **sampleclearance.com**, and the high-end human service **DMG Clearances** (used by Drake, per Omari MC roundup).\n- **Cleared (clearedmusic.io)** covers the adjacent B2B wedge: API detecting stolen samples/Content ID conflicts in uploaded catalogs, used by Canva, Soundstripe, That Pitch.\n- Cost guides confirm chronic pain: 2026 guides report no fixed price, two separate negotiations (master + publishing), \"$hundreds for obscure indie records to $50,000+ for famous masters\" plus 15–50% royalty splits (musicproductionwiki.com, eclipsedistro.com, chartlex.com).\n- HN: 317 hits for \"sample clearance\"; e.g. \"The Economics Of Girl Talk\" (2013) discussions calling it \"a broken system that impairs the ability of young producers to make music without taking huge legal risks\" — pain is real but discussed at steady, not growing, volume.",
+    "competitors": "Sampleton (identical product, live with pricing), Tracklib (pre-cleared marketplace, category leader), Cleared (B2B detection API), Sampy, brYdge, Ample Samples, DMG Clearances (premium human service), Harry Fox Agency (DIY rights lookup)",
+    "demand_signals": "",
+    "decision": "KILLED",
+    "decision_raw": "KILLED",
+    "uniqueness": 1,
+    "demand": 3,
+    "refinement": "Killed on saturation-by-startups: the space was underserved for years, but 2024–2025 startups (Sampleton, Sampy, Cleared) have already staked the exact wedges. A newcomer would need a meaningfully different angle (e.g., embedded clearance at distributors like DistroKid — but that's an incumbents' distribution deal to win, not an indie product wedge)."
+  },
+  {
     "id": "b9923d0a74b3",
     "date": "2026-08-22 00:55",
     "title": "\"Availity for Pet Insurance\" — Multi-Carrier Claims & Pre-Auth Automation Layer for US Vet Clinics (AI agent that files every insurer's claim from the PIMS record, tracks to paid, and manages direct-pay float)",
