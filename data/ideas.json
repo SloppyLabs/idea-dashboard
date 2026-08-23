@@ -85,6 +85,23 @@
     "refinement": "Killed on saturation-by-startups: the space was underserved for years, but 2024–2025 startups (Sampleton, Sampy, Cleared) have already staked the exact wedges. A newcomer would need a meaningfully different angle (e.g., embedded clearance at distributors like DistroKid — but that's an incumbents' distribution deal to win, not an indie product wedge)."
   },
   {
+    "id": "202fda9576a6",
+    "date": "2026-08-23 21:37",
+    "title": "Continuous Component EOL/NRND Lifecycle Monitoring for Small Hardware Makers (\"watch your BOM so a chip EOL never blindsides you\")",
+    "domain": "Hardware/electronics dev-tools, supply chain, KiCad/EDA ecosystem",
+    "problem": "Small hardware startups and solo makers design products around off-the-shelf ICs, then discover years later (at re-manufacture time) that a critical part went NRND or EOL — forcing panicked last-time-buys or redesigns. Enterprise obsolescence tools (SiliconExpert, Z2Data) cost $10k+/yr quote-based; indies have no affordable continuous watchdog that alerts when a part in their BOM changes lifecycle status.",
+    "audience": "Small hardware companies (2-50 people), solo makers shipping open-source/commercial devices on KiCad/Altium, and contract-engineering shops maintaining multi-year product lifecycles.",
+    "solution": "A CI-style monitoring service: connect your KiCad/Altium BOM (git-native or file upload), it resolves every MPN against distributor/manufacturer lifecycle feeds (Digi-Key, Mouser, Octopart-grade data), and continuously alerts on EOL/NRND notices, stock-collapse events, and lead-time spikes — with a suggested drop-in alternative when a part is deprecated.",
+    "landscape": "- **PCBScope is a DIRECT competitor at the exact indie price point** ($24/mo Pro, $199/yr): \"Component lifecycle intelligence for your PCB designs... Identify obsolete, NRND, and EOL parts before they become a problem,\" risk scoring, stock/market pricing aggregated from Digi-Key/Mouser/Avnet/Farnell, Altium+KiCad+Eagle support, \"Alternatives Finder — Coming Soon.\" (pcbscope.com extract, fetched this run)\n- **PartsBox (mature indie incumbent)** covers inventory + BOM pricing + purchasing with live distributor data links and KiCad/Altium/EAGLE import ($15-60/mo tiers per public pricing); lifecycle-adjacent via live distributor part data. (partsbox.com/features.html extract)\n- **Enterprise tier fully owned:** SiliconExpert Obsolescence Management / BOM Manager, Z2Data Part Risk Manager (\"NRND Detection & Alerts\"), Accuris BOM Intelligence, Source Intelligence — all quote-based enterprise sales. (siliconexpert.com, z2data.com, accuristech.com)\n- **Other mid-tier players:** EOLManager (eolmanager.com), TekPulse BOM EOL checks, Luminovo obsolescence guide/product. (DDG-lite search results)\n- **OSS: essentially none.** GitHub search \"component obsolescence monitor\" → 1 repo (Sharumathy-sb/semiconductor-sourcing-obsolescence-monitor, 0★, created 2026-06-23); \"kicad BOM lifecycle\" → 0 repos. (GitHub API)",
+    "competitors": "PCBScope (direct, new, $24/mo), PartsBox (adjacent incumbent), SiliconExpert/Z2Data/Accuris/Source Intelligence (enterprise), EOLManager, TekPulse, Luminovo.",
+    "demand_signals": "",
+    "decision": "KILLED",
+    "decision_raw": "KILLED",
+    "uniqueness": 2,
+    "demand": 2,
+    "refinement": "Killed on both axes. The gap between PartsBox ($15-60/mo, inventory-centric) and SiliconExpert ($10k+/yr) is real, but PCBScope just entered it with feature-parity at $24/mo — first-mover window closed. A would-be differentiator (git-native BOM diffing + alert-on-EOL in CI) is a feature, not a company, and could be copied by PCBScope/PartsBox in a sprint. Re-runnable: only if a future run finds PCBScope dead AND concentrated recurring demand signals (e.g., a shortage/EOL wave driving fresh community threads)."
+  },
+  {
     "id": "b9923d0a74b3",
     "date": "2026-08-22 00:55",
     "title": "\"Availity for Pet Insurance\" — Multi-Carrier Claims & Pre-Auth Automation Layer for US Vet Clinics (AI agent that files every insurer's claim from the PIMS record, tracks to paid, and manages direct-pay float)",
