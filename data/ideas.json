@@ -1,5 +1,22 @@
 [
   {
+    "id": "936b7683d768",
+    "date": "2026-08-28 10:30",
+    "title": "Visual + Correctness Regression Testing for Generated Documents (\"Percy for PDFs\" — invoices/statements/contracts in CI)",
+    "domain": "Dev tools, testing/QA infra, document generation",
+    "problem": "Teams that programmatically generate high-stakes PDFs (invoices, tax statements, policies, contracts, tickets) have no easy CI gate for layout/correctness regressions. A template tweak, font swap, or dependency bump (wkhtmltopdf/Puppeteer/dompdf version change) silently breaks pagination, overlaps tables, or drops clauses — and it ships to customers unnoticed because nothing diffs the rendered output.",
+    "audience": "Engineering teams at fintech/insurtech/SaaS billing orgs generating customer-facing PDFs at volume; also reporting-platform teams (JasperReports etc.).",
+    "solution": "A developer-first CI service/SDK: render PDFs from fixtures on every PR, rasterize + structurally parse them, diff against approved baselines (pixel + text-region aware to avoid false positives from timestamps), and fail the build with a per-page visual diff — Percy-style review UI but for documents.",
+    "landscape": "- **Applitools has a dedicated PDF testing product** (\"PDF Testing with Visual AI — compare PDFs against approved baselines... catch a broken table, missing clause, or wrong figure before a statement, contract, or disclosure reaches a customer\", applitools.com/solutions/pdf-testing/) — the exact proposed value prop, executed, with batch mode, text assertions by page, and PDF form support.\n- **Percy (BrowserStack) natively supports PDF testing** (browserstack.com/docs/percy/references/pdf-testing + BrowserStackCE/percy-pdf repo); **LambdaTest/TestMu SmartUI has PDF visual regression** (docs page for SmartUI PDF Comparison, project type \"PDF\"); **Antenna House AHRTS** is a whole enterprise \"Regression Testing System\" for pixel-by-pixel PDF compare (antennahouse.com/ahrts); **ACCELQ** and **QF-Test/DiffPDF** also cover PDF automation (accelq.com/blog/pdf-testing-tools).\n- **OSS tier is thin but non-empty:** moshensky/pdf-visual-diff (59★, JS, maintained-2026), btravers/pdf-snapshot (12★, Jest matcher, abandoned 2023), Doczilla-APP/to-match-pdf-snapshot (4★, Playwright matcher from a PDF-API company), dichovsky/pdf-visual-compare (4★). Plus brand-new 2026 hobby attempts: jinyounghub/docrefract (1★, \"semantic PDF/DOCX diff GitHub Action, created 2026-07-17\"), danmolitor/pdf-testkit (0★, created 2026-08-26 — literally yesterday), faictory/translated-pdf-a11y-diff (0★). The idea is \"in the air\" at hobby tier. (GitHub API repo searches)\n- HN history: \"Ask HN: Is PDF generation a real pain for developers?\" (2013, id 5621380) — top answers say generation is easy with libraries and the paying market is enterprise CCM; \"Wkhtmltopdf Considered Harmful\" (43pts, 2018) validates rendering-fragility pain; no significant HN story ever for a PDF-regression-testing product.",
+    "competitors": "Applitools PDF Testing (mature, dedicated), Percy/BrowserStack PDF testing, LambdaTest/TestMu SmartUI PDF, Antenna House AHRTS (enterprise, dedicated), ACCELQ, QF-Test, DiffPDF; OSS: pdf-visual-diff (59★), pdf-snapshot, to-match-pdf-snapshot, + 3 new 2026 micro-repos.",
+    "demand_signals": "",
+    "decision": "KILLED",
+    "decision_raw": "KILLED",
+    "uniqueness": 2,
+    "demand": 2,
+    "refinement": "Killed on both axes. The only visible gap is a \"developer-first, cheap, self-hostable Percy-for-PDFs\" wedge under the enterprise pricing of Applitools/AHRTS — but Percy already occupies the dev-first visual-review slot and supports PDFs natively, and the OSS attempts prove the wedge is being attempted with no breakout, consistent with weak demand. Not worth a solo build. Possible future adjacent angle (not this idea): correctness-semantic checking of *values* inside generated financial documents (does the PDF total match the ledger?) — arithmetic-consistency validation rather than visual diff — but that overlaps BI-metric-regression ideas already logged (2026-07-27)."
+  },
+  {
     "id": "22637d872a1b",
     "date": "2026-08-27 13:09",
     "title": "Continuous Consent-Signal Observability (\"Datadog for CMP/Consent Mode/TCF\") — catch silent consent breakage that zeroes your EU conversions before finance notices",
