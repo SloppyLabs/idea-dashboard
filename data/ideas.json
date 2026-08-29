@@ -68,6 +68,23 @@
     "refinement": "Killed on uniqueness, not demand. The pain is as real as it gets — but this is a \"validated market with active 2026 entrants,\" the worst time to enter as a follower. Two observations for future runs: (1) the *trust* layer (who is allowed to hold signing keys, HSM pooling, cert-revocation recovery insurance) is the hard moat — a \"signing-key insurance/recovery\" product is adjacent but untested; (2) Linux desktop distribution (flatpak/snap/AppImage fragmentation, Conveyor explicitly lists it as unsolved \"but which?\") remains genuinely unsolved, but its monetizable audience is thin. Do NOT re-pitch managed desktop release infra."
   },
   {
+    "id": "bef52e7915ff",
+    "date": "2026-08-29 13:40",
+    "title": "EPA AIM Act (2026) Refrigerant Leak-Repair & Tracking Compliance SaaS for Small HVAC-R Contractors",
+    "domain": "facilities/EHS compliance (vertical SaaS for HVAC/R trades)",
+    "problem": "On Jan 1, 2026, EPA's AIM Act ER&R rule (40 CFR §84.106) lowered the regulated-appliance threshold from 50 lbs to 15 lbs of refrigerant, pulling hundreds of thousands of small commercial systems (5-ton RTUs, walk-ins) into federal leak-repair, leak-rate-calculation, 30-day repair-clock, and recordkeeping obligations with penalties up to ~$124k/day. Small HVAC shops and the facility owners they serve must now run compliance programs most never had.",
+    "audience": "Small/mid-size HVAC-R contractors (3–20 trucks) and small commercial property owners/managers now covered by the 15-lb rule.",
+    "solution": "A cheap, field-first compliance app: tech scans a QR tag on the appliance, logs refrigerant added/removed, the app auto-calculates leak rates, starts 30-day repair countdowns, maintains the audit binder, and generates the chronic-leaker report.",
+    "landscape": "- The rule is real and effective: EPA fact sheet \"Leak Repair Requirements\" (Jan 13, 2026) confirms 15-lb threshold, 30-day repair deadlines, ALD mandates for large systems (epa.gov/system/files/documents/2026-01/er-r-fact-sheet-leak-repair-2026-01-13_1.pdf); law-firm confirmation at hunton.com (HFC Management Rule effective 1/1/2026).\n- A swarm of startups already ships EXACTLY the proposed product. LeakClock: polished site, $19/mo Solo (40 systems) → $49 Shop → $99 Multi-Site, QR tracking, leak-rate calc, repair countdown, audit binder, offline field app (leakclock.com). Others: RefriComply (refricomply.com), RefLeakLog (refleaklog.app), RefriTrak (refritrak.com, \"start free\"), Threshold15 (threshold15.com), RefrigerantTrack (refrigeranttrack.com), FMHero, RefRanger, Oxmaint module.\n- Incumbents cover enterprise + FSM: Fexa acquired Trakref (fexa.io/fexa-trakref); Parasense; CoolSys federal refrigerant compliance services (coolsys.com); and ServiceTitan now ships built-in Refrigerant Tracking for EPA recordkeeping (help.servicetitan.com) — LeakClock even publishes a \"LeakClock vs ServiceTitan\" page conceding ST keeps records but doesn't run leak-rate math (yet).\n- Market-flood tell: SEO content farms have already spawned generic \"Best Refrigerant Compliance Software 2026\" listicles (40cfrpart84.com, worldmetrics.org, gitnux.org, zipdo.co, wifitalents.com) and every vendor publishes comparison pages against each other (leakclock.com/vs/, refleaklog.app/guides/epa-refrigerant-tracking-software, refritrak.com/en/blog/best-refrigerant-compliance-software-2026).\n- HN: essentially zero discussion of AIM Act compliance tooling (Algolia search for \"refrigerant\" returns no compliance-tool stories). X/Twitter: not searchable from this environment (noted).",
+    "competitors": "LeakClock, RefriComply, RefLeakLog, RefriTrak, Threshold15, RefrigerantTrack, FMHero, RefRanger, Fexa Trakref, Parasense, Oxmaint, ServiceTitan (built-in), CoolSys (services). That's 13+, several launched specifically for this rule with small-shop pricing.",
+    "demand_signals": "",
+    "decision": "KILLED",
+    "decision_raw": "KILLED",
+    "uniqueness": 1,
+    "demand": 4,
+    "refinement": "Killed as a direct tracker. Possible residual wedges observed but NOT validated: (a) owner/facility-side liability portal vs contractor-side tools (liability-split confusion documented by refleaklog.app/blog/owner-or-contractor-who-epa-fines-subpart-c) — but Fexa/CMMS already own the owner side; (b) fire-suppression HFC systems (FSSA Dec 2024 reporting note) — niche too small to justify. Anyone entering now is ~1 year behind dedicated players with SEO moats."
+  },
+  {
     "id": "936b7683d768",
     "date": "2026-08-28 10:30",
     "title": "Visual + Correctness Regression Testing for Generated Documents (\"Percy for PDFs\" — invoices/statements/contracts in CI)",
