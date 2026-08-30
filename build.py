@@ -55,14 +55,16 @@ def parse_log(log_path):
 
         raw_decision = field("Decision")
         dec = raw_decision.upper()
-        if "HIT" in dec:
-            decision_norm = "HIT"
+        # Check REFINED/KILLED/DEFERRED first: entries like "REFINED (not a HIT)"
+        # or "KILLED ... (would have been a HIT)" must not classify as HIT.
+        if "REFINED" in dec:
+            decision_norm = "REFINED"
         elif "KILLED" in dec:
             decision_norm = "KILLED"
         elif "DEFERRED" in dec:
             decision_norm = "DEFERRED"
-        elif "REFINED" in dec:
-            decision_norm = "REFINED"
+        elif "HIT" in dec:
+            decision_norm = "HIT"
         else:
             decision_norm = "OTHER"
 
