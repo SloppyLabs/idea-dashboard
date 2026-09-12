@@ -85,6 +85,23 @@
     "refinement": "Refined from broad \"QA layer for AI dubbing\" to TWO paid wedges + one free wedge: (a) PRIMARY — pre-publish **Dub QA Gate API/CI for teams shipping paid dubbing pipelines** (ElevenLabs/Rask/HeyGen/API users at publishers, e-learning, media teams): meaning-fidelity diff, brand/claim/profanity guard, voice+timing checks, per-language scorecards; priced per dub-minute. This targets people already spending money on dubs (proven WTP) who currently spot-check manually or not at all. (b) SECONDARY — **independent benchmark/acceptance reports** (\"DXOMARK for AI dubbing\"): sold to localization vendors/streamers choosing providers; the Dubformer/CROON self-study war shows the vacuum. (c) FREE lead-gen, NOT the business: a \"what did my video become?\" checker for YouTube auto-dubbed channels (viral potential high, WTP ~zero). Kill criteria: ElevenLabs or Yella Umbrella ships native dub-QA scoring; academic metric gets productized by an LQA incumbent (Xbench/ApSIC adds audio); follow-up run should re-verify demand once X access returns — if creator-side WTP remains unproven and enterprise stays quiet, kill. Validation next-step if pursued: free one-shot \"paste a YouTube URL with auto-dub → per-language meaning-drift report\" tool posted to r/NewTubers + localization communities; measure conversion of dubbing-platform users to the paid API."
   },
   {
+    "id": "63591957d6f1",
+    "date": "2026-09-12 19:35",
+    "title": "AI-Powered Submittal / Shop- Drawing Review for Construction Administration",
+    "domain": "AEC / construction-tech (vertical SaaS)",
+    "problem": "Architects, engineers-of-record, and GC project engineers spend days per submittal package manually cross-referencing 50–200-page vendor submittals (product data, shop drawings, certifications) against 1,000–5,000-page spec books — and still miss deviations, with first-pass rejection rates of 30–40% costing ~$805 per rejected submittal (BuildSync's 6,000-respondent survey).",
+    "audience": "GC submittal coordinators, architecture/engineering firms doing construction-admin contract review, and specialty subcontractors preparing submittals.",
+    "solution": "An AI review engine that ingests submittal packages + project specs (CSI MasterFormat), extracts product data with page-level citations, cross-references spec sections and substitution procedures (01 60 00 / 01 25 00), flags deviations, and drafts the stamped review markup/log.",
+    "landscape": "- Category is saturated: a dedicated May-2026 comparison article reviews FIVE leading AI submittal tools side-by-side (BuildSync, Part3, Remy, iFieldSmart, SpecLens) — speclens.ai/blog/submittal-review-software-comparison\n- InspectMind AI (YC W24) launched \"AI agent for reviewing construction drawings\" on HN Dec 2025 (59 pts, 56 comments) and sells a dedicated AI Submittal Review Checker \"from $50\" — inspectmind.ai/checkers/submittal; hn.ai item 46219386\n- BuildSync (buildsync.ai) claims \"95% first-time approval, save up to 80% of review time\" with native Procore integration and owns the category's thought-leadership research ($805/rejection stat)\n- Additional direct vendors found in one search: PlanSpan, Submittal.app, Nomic (submittal-review use-case page), Cogram (automates RFIs & submittals for AEC, actively hiring per Aug-2026 HN Who's Hiring), Pelles.ai (trade-contractor side), Submittallink ($150–250/mo workflow+AI)\n- The serial-review handoff problem (7–14 days across reviewer chain) is explicitly \"workflow software territory\" (Procore), not an AI-review wedge — per the SpecLens comparison",
+    "competitors": "BuildSync, Part3 Submittal Assistant, Remy, iFieldSmart Submittal AI, SpecLens, InspectMind (YC W24), PlanSpan, Submittal.app, Nomic, Cogram, Pelles.ai, Submittallink — at least 12, several funded, one YC-backed",
+    "demand_signals": "",
+    "decision": "KILLED",
+    "decision_raw": "KILLED",
+    "uniqueness": 1,
+    "demand": 4,
+    "refinement": ""
+  },
+  {
     "id": "e3dd15517f80",
     "date": "2026-09-11 00:55",
     "title": "\"Fakespot Successor for the AI-Slop Era\" — Consumer Review-Credibility Scanner (AI-fake-review detector extension/app)",
