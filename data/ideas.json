@@ -1,5 +1,22 @@
 [
   {
+    "id": "c40a4f6cf798",
+    "date": "2026-09-16 03:00",
+    "title": "\"Makerspace OS\" — Safety-Certification-Gated Machine Access + Membership + Classes + Billing for Makerspaces/Library Fab Labs/University Shops",
+    "domain": "community infrastructure / vertical SaaS (creative tools rotation)",
+    "problem": "Makerspaces, library makerspaces, and university fab labs juggle member billing, machine booking, safety training records, and physical machine access in 5-7 disconnected tools (waiver apps, spreadsheets, Google Forms, badge stickers) — and can't enforce \"untrained member can't turn on the CNC\" without duct-taped hardware hacks.",
+    "audience": "Operators of the ~1,000+ US makerspaces, thousands of library makerspace programs, and university makerspaces (NCSU Garage-scale); also EU fab labs.",
+    "solution": "A vertical SaaS unifying membership/billing, class+training LMS, bookings, and RFID/PIN machine-power access control where completing training automatically unlocks the machine. One system instead of seven; audit trail for liability.",
+    "landscape": "- Fabman (fabman.io) is the established vertical: \"OS for your makerspace\" — machine integration in <5 min, training-gated machine access, bookings, per-minute billing; €49/€99/€199/mo tiers + €10-14/mo per integrated machine; ~3 employees, ~$330K/yr revenue per GetLatka — the TAM ceiling in action.\n- MakerOps (makerops.ai, new entrant) does EXACTLY this pitch: \"Training LMS, machine access control, waivers, staff scheduling, maintenance, inventory, events... Pass a training and the machine turns on — one system, not seven,\" with native iOS/Android apps and their own hardware controller.\n- 2026 roundup content (worldmetrics.org \"Top 10 Best Makerspace Software,\" updated Aug 29 2026) lists 10+ active players: Cheqroom (9.3, certification-gated reservations), Spacebring (8.9, dedicated makerspace solution page), Gantner GAT Access (8.6, badge-based machine/door control), Fabman (8.3), Skedda, Cobot, OfficeRnD, MemberLeap, Snipe-IT, Makerspace Manager (6.3).\n- Adjacent platforms are expanding in: Zipper (boutique-fitness SaaS) launched a makerspace vertical page (\"A laser-cutter slot at 9. A safety induction at noon... one transparent price\"); Coworks (coworks.com) powers NCSU Garage & BioLabs shared labs; Toolsquare sells installable machine-control units (MCU) to fab labs/pharma; GRIT Automation sells RFID training-gated machine power to schools/CTE/makerspaces.\n- Universities keep building their own rather than buying: RIT SHED ACS (open-source, docs at acs.make.rit.edu) and Bucknell \"PortalBox\" (DIY RFID access boxes; site explicitly offers info only, no kits/support) — evidence of fit/budget gaps, not empty space. GitHub shows a graveyard of ~12 abandoned DIY membership/inventory projects (arooo 70★, Dallas Makerspace Inventory, OpenFabControl 7★).\n- Market size: poidata.io counts 1,046 makerspaces in the US (Aug 2026); the \"Wiki for Makers\" (librarymakers.miraheze.org) states library makerspaces have tight budgets and prefer FOSS.\n- Note: an HN post \"Sunset – Cobot is winding down\" (Nov 2025) is a DIFFERENT Cobot (AI agents, cobot.co by Mainframe) — the coworking Cobot (cobot.me) is still operating.",
+    "competitors": "Fabman, MakerOps, Toolsquare, Gantner GAT Access, Cheqroom, Spacebring, Coworks, Zipper (makerspace vertical), Skedda, Cobot, OfficeRnD, MIDAS, GRIT Automation (hardware), plus open-source RIT SHED ACS / PortalBox / arooo.",
+    "demand_signals": "",
+    "decision": "KILLED",
+    "decision_raw": "KILLED",
+    "uniqueness": 2,
+    "demand": 3,
+    "refinement": "Killed as a general play. The only live wedge found — an open-source-core, edu/library-governed version with paid hosted hardware (the RIT/Bucknell/Dallas DIY crowd) — is a low-WWP lifestyle niche at best, since that segment self-selects for FOSS and zero budget. Would only revisit as a bootstrap/open-source project, not a startup."
+  },
+  {
     "id": "2510262dc04e",
     "date": "2026-09-15 09:30",
     "title": "\"Gitleaks + Canary Pen-Test for Training Corpora\" — Pre-Training Data-Hygiene Scanning + Post-Training Memorization-Risk Verification for Enterprises Fine-Tuning LLMs on Proprietary Data",
