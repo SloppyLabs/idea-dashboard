@@ -1,5 +1,22 @@
 [
   {
+    "id": "ed4c47b1a889",
+    "date": "2026-09-19 10:30",
+    "title": "Verified Marketplace for Clinical Preceptor Placements (NP/PA students)",
+    "domain": "niche marketplaces / healthcare education",
+    "problem": "Online NP/PA programs enroll students but leave clinical placement to the student — who ends up cold-calling clinics for weeks or paying brokers $1,500–$5,000 per rotation out of pocket. Preceptors cancel last-minute, broker rosters turn out thin, and affiliation agreements take months.",
+    "audience": "NP students (FNP/PMHNP/DNP), PA students, and the preceptors/clinics asked to host them — ~100k+ US students in placement-bearing programs annually.",
+    "solution": "A two-sided verified marketplace: credential-checked preceptor profiles with availability calendars, school-requirements-aware matching (pull each program's specialty/hour/credential rules), transparent flat pricing, and automated affiliation-agreement processing with escrowed fees.",
+    "landscape": "- Space is saturated: NPHub (min $1,000 + 5% service fee + 20% rush fee, $12.75/hr start, 12-mo financing, \"Perfect Preceptor Promise\" refund/replacement guarantee; 90+ placement staff), PreceptorLink ($150 non-refundable app fee, 50% autopay on acceptance, national paid/unpaid preceptor database), MatchNP (\"7,000+ preceptor network, 1,000+ students placed, 98% placement rate, ~48hrs to match\", no-cost-until-matched), PreceptorTree ($1,500–$2,000/rotation, \"Featured in Forbes\"), plus ClinicalMatchMe, Precept Me, PreceptorPoint, XPrecepto, Clinical Preceptor Rescue, even Walden-specific waldenpreceptor.com (nphub.com/pricing; preceptorlink.com; matchnp.com; preceptortree.com).\n- The exact disruptive wedge I'd have refined into is ALREADY TAKEN: preceptor.network (launched ~Mar 2026, \"early access\") sells $10-per-match flat pricing against $2k–$5k brokers, with school-email domain detection → program-aware matching, preceptor availability controls, an \"Emergency Mode\" for placements that fall through, a school/partner tier, and weekly content attacking broker pricing (\"Stop Paying $5,000 for a Preceptor Placement\", Apr 2026; \"The Affiliation Agreement Nightmare Nobody Warned You About\", Jun 2026) (preceptor.network/blog).\n- Scam/quality rot is documented industry-wide: NPHub itself publishes \"Clinical Preceptor Rescue scam\" and \"Precept Me NP scam\" warning posts; PreceptorLink publishes \"how to spot red flags before you pay\"; Reddit users report \"shocked how few preceptors these companies actually have on the roster\" and faxed affiliation agreements that \"months go by\" unresolved (nphub.com/blog; preceptorlink.com; r/nursepractitioner thread 163zi46).\n- School/health-system side is also occupied: ACEMAPP (compliance, onboarding, affiliation agreements, case/time logs; used by Arizona College of Nursing, Henry Ford, Aultman) and Clinician Nexus (2,400+ clinical sites, 143,500+ students, health-system workforce angle) (acemapp.com; cliniciannexus.com).\n- Regulatory tailwind exists but doesn't help a new entrant: CCNE 2024 standards amendments (Key Elements II-B/II-F/III-H) press programs to secure clinical sites; Reddit users cite them against schools, and at least one Texas student sued a school over placement failure (r/nursepractitioner threads 163zi46, 1irlcju).",
+    "competitors": "NPHub, PreceptorLink, MatchNP, PreceptorTree, ClinicalMatchMe, Precept Me, PreceptorPoint, XPrecepto, Clinical Preceptor Rescue, preceptor.network (low-cost disruptor, Mar 2026); school-side: ACEMAPP, Clinician Nexus, Exxat, TyphonGroup.",
+    "demand_signals": "",
+    "decision": "KILLED",
+    "decision_raw": "KILLED",
+    "uniqueness": 1,
+    "demand": 5,
+    "refinement": "Killed as a marketplace — the wedge I would refine into ($10 flat matching + school-requirements-aware + emergency replacements + affiliation-agreement automation) is precisely preceptor.network's shipped positioning, and the school/health-system software side is locked up by ACEMAPP/Clinician Nexus. Classic \"max demand, zero uniqueness\" — the pain is one of the best-validated in this entire log, but entry is ~5 years too late. Adjacent unowned angles (preceptor-side payment/compliance infra) were already logged 2026-09-03 (\"Preceptor Pay\") and are excluded as repeats."
+  },
+  {
     "id": "ac92e804b3ee",
     "date": "2026-09-18 01:20",
     "title": "\"Credit Karma for Property Risk Data\" — Consumer-Side Home-Insurance Risk-File Disclosure, Error Dispute & Non-Renewal Defense Platform",
