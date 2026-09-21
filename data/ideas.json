@@ -1,5 +1,22 @@
 [
   {
+    "id": "a40a79bb71c3",
+    "date": "2026-09-22 12:00",
+    "title": "Cross-PRO Live-Setlist Auto-Filer & Royalty-Recovery App for Indie Touring Musicians (\"stop leaving BMI Live / ASCAP OnStage money unclaimed\")",
+    "domain": "Creative tools / music-biz software / consumer-prosumer fintech (domain rotation: music-industry tooling, never previously explored in 356 prior ideas)",
+    "problem": "Songwriters earn live-performance royalties by self-reporting setlists to their PRO (BMI Live, ASCAP OnStage) within quarterly windows — but musicians routinely forget (\"I forget to do it. A lot.\"), find it too tedious (\"Too much work for the pay. We play maybe 30 shows a year\"), and critically, each PRO only pays its OWN members: when bandmates belong to different PROs, setlists filed at one society never flow to writers at the other, so co-writers silently lose years of royalties. Money self-reported only; miss the window and it's gone.",
+    "audience": "Indie/DIY touring bands and solo songwriters (30-150 shows/yr at 100-500-cap venues) who are PRO members but don't rigorously file setlists; band members split across ASCAP/BMI; also managers of small rosters.",
+    "solution": "A mobile-first app that (1) captures setlists effortlessly (tap-to-build live with song-memory, import from setlist.fm/DJ export/Spotify), (2) stores writer splits per song (from split sheets), and (3) generates + files the correct submission to EACH bandmate's PRO (BMI Live for BMI writers, ASCAP OnStage for ASCAP writers) within every quarterly window — via pre-filled packets and guided/automated portal submission — plus a lookback-recovery mode that batches missed prior shows while back-pay windows are still open.",
+    "landscape": "- **The former leader EXITED the niche:** atVenu, historically the tour setlist-reporting tool, has pivoted to \"Live Event POS & All-in-One Payment Platform\" (merch/F&B commerce) — its setlist-reporting page now 404s. (atvenu.com extract)\n- **Soundstr is dead:** the GPS/\"songboarding\" live-performance-detection startup (partnered with BMI ~2018) was acquired by pennystock VNUE Inc; a 2021 r/pennystocks DD documents the collapse. Nothing succeeded it. (reddit.com/r/pennystocks DD thread)\n- **Songtrust (biggest publishing-admin brand) does NOT file setlists:** its live-performance pages 404; it only educates (\"register your setlists\") — publishing admin ≠ live setlist filing. (songtrust.com)\n- **setlist.fm has no royalty feature:** pure crowdsourced wiki (10.5M setlists) — usable as a data source, not a competitor. (setlist.fm homepage)\n- **OSS: one 0-star hobby repo** (mannylifecoach/setlist-royalty-tracker, Mar 2026, \"Monitor setlist.fm for live performances of your songs and export data for BMI Live / ASCAP OnStage\") — validates the need, zero traction. (GitHub API)\n- **Adjacent demand validated at scale:** HN \"Show HN: Check if any of the $656M in unclaimed royalties at The MLC is yours\" (Aug 2026, 77 pts, 38 comments) — unclaimed-music-royalty tools get real traction. (HN 49375237)",
+    "competitors": "atVenu (exited/pivoted to POS), Soundstr/VNUE (defunct), Songtrust (education only, no filing), setlist.fm (data source), setlist-royalty-tracker OSS (0★). No live direct competitor found.",
+    "demand_signals": "",
+    "decision": "REFINED",
+    "decision_raw": "REFINED",
+    "uniqueness": 4,
+    "demand": 3,
+    "refinement": "Refined from \"setlist reporting tool\" to the specific wedge validated by the Aug 2025 thread: **cross-PRO whole-band coverage** (auto-split each setlist by writer→PRO and file separately at BMI Live AND ASCAP OnStage) + **lookback recovery batches**. Monetization should be recovery-aligned, not SaaS-heavy ($30-60/yr band plan or % of recovered back-royalties) to fit musician budgets. Risks: PRO portals have no public APIs (needs guided submission/RPA), PROs could ship better self-serve flows, and TAM is thin — treat as a lifestyle/side product or a feature acquisition target (DistroKid/TuneCore/Songtrust adjacent) rather than a venture business. Validation next step: free setlist-capture + \"did you know your bandmates at other PROs earned $0 from these shows?\" lookback calculator, posted in r/TouringMusicians."
+  },
+  {
     "id": "4fd16498d34e",
     "date": "2026-09-21 01:58",
     "title": "\"Logbook Lint\" — Automated Pre-Application Audit & Error-Detection Layer for Pilot Logbooks",
