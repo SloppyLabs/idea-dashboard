@@ -1,5 +1,22 @@
 [
   {
+    "id": "b40d58dcbab8",
+    "date": "2026-09-28 01:10",
+    "title": "\"Third-Party Script Integrity & Governance\" — continuous monitoring of vendor JavaScript on your site (change alerts, vendor inventory, PCI 6.4.3/11.6.1 evidence, Magecart defense)",
+    "domain": "web security / dev tools / privacy compliance",
+    "problem": "Every website loads dozens of third-party scripts (analytics, chat widgets, payment libs, A/B tools) that vendors can change, break, or get compromised at any moment — silently, invisibly to server logs. Teams find out from customers (\"your checkout is broken\"), from PCI auditors, or from breach disclosures (polyfill.io, Magecart skimmers, Brevo widget attack).",
+    "audience": "E-commerce and SaaS web teams (eng leads, marketing-ops, security/compliance) who must keep checkout/payment pages PCI DSS 4.0.1-compliant and want vendor JS changes gated/alerted like first-party code.",
+    "solution": "A vendor-neutral SaaS that crawls + in-page-monitors every third-party script on your pages, fingerprints each payload, alerts on any change/new script/removed consent-gate, maintains an auto-attributed vendor inventory with load chains, and exports QSA-ready PCI 6.4.3/11.6.1 evidence. Wedge: dev-first pricing (not enterprise sales), Slack/GitHub-native alerts, per-PR \"script diff\" on preview deploys.",
+    "landscape": "- c/side (cside.com, YC-backed) is doing exactly this and executing well: real-time script monitoring, script blocking, dependency graphs, PCI 6.4.3/11.6.1 automation, AI-agent detection, free tier (2k pageviews) + $99/mo Business + enterprise; SOC 2, 4.9/5 on SourceForge (source: cside.com homepage + pricing page, fetched 2026-09-28)\n- Cloudflare Client-Side Security (Page Shield) — opened to everyone per their March 2026 blog \"Client-Side Security: smarter detection, now open to everyone\"; positioned as making the Oct 2025 NPM supply-chain attack a \"non-event\" (HN 19 pts); free/bundled with Cloudflare plans (source: blog.cloudflare.com via HN Algolia)\n- Feroot (DXSecure/PaymentGuard) — enterprise client-side security + PCI 6.4.3/11.6.1 automation + privacy-consent auditing (GDPR/CCPA/HIPAA, 70+ regs); enterprise pricing (source: feroot.com homepage)\n- Sansec threat research shows the attack side is continuously active: Sep 16 2026 Brevo supply-chain attack hit 100k+ WordPress sites via embedded widgets; Sep 5 2026 StyleSmuggler Magento 0-day RCE (CVSS 10.0); Jun 2026 Magecart skimmer abuse of Stripe API as C2 (source: sansec.io/research)\n- ObservePoint — enterprise \"tag governance\"/digital-experience-observability incumbent (Cloudflare-blocked crawl, but positioned at marketing-ops, ~$10k+/yr enterprise contracts); a new indie competitor \"Tracking Auditor\" (trackingauditor.io) launched July 2026 on r/GoogleTagManager scoring GTM container health (unused tags, missing consent gating, orphaned triggers, version diffs)\n- polyfill.io incident (Jun 2024) remains the canonical wake-up call: 152 pts / 80 comments on HN for Cloudflare's forced-remediation post; thread sentiment = real anxiety about third-party JS + distrust of Cloudflare's MITM auto-fixing for anyone not already a Cloudflare customer",
+    "competitors": "c/side (direct, strong, affordable), Cloudflare Page Shield/CSS (bundled, free tier), Feroot (enterprise), ObservePoint/Ensighten (marketing-tag governance, enterprise), Sourcepoint/consent tools (adjacent), Sansec (Magento-focused detection), Tracking Auditor (indie, GTM-audit niche)",
+    "demand_signals": "",
+    "decision": "KILLED",
+    "decision_raw": "KILLED",
+    "uniqueness": 1,
+    "demand": 4,
+    "refinement": "Killed on saturation, not on demand. The only unpicked angle found: vendor-neutral (anti-Cloudflare-MITM) positioning for teams NOT on Cloudflare — but c/side already occupies that exact slot at $0–99/mo. GTM-container-health auditing (Tracking Auditor's niche) is a viable indie wedge but was just taken. If revisited: go narrower — e.g., script-governance CI gate for preview deploys only, or PCI evidence for a specific vertical (Shopify Plus agencies), but expect c/side/Cloudflare to bundle it."
+  },
+  {
     "id": "6219b40f8d4b",
     "date": "2026-09-27 03:10",
     "title": "\"Full-Stack Staging Refresh\" — Correlated-State Environment Rehydration (DB + S3 objects + search index + queues → one consistent, de-identified staging refresh)",
