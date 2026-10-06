@@ -68,6 +68,23 @@
     "refinement": "Original framing (\"data contracts for scrapers\") collides with free job-monitoring (ScrapeOps) and schema validation (Apify/GX). Refined wedge: the two things NOBODY covers — (a) semantic/value-level validation (wrong-number detection via field-level distribution drift + control records with known ground truth) and (b) baseline lifecycle management (auto-flag site changes, human/LLM triage to accept-and-rebaseline vs. alert) — sold as the verification layer that self-healing scrapers (anansi et al.) will need to prove their fixes actually work. Go-to-market: framework-agnostic Python SDK + hosted alerts; wedge niche = client-delivering scraping agencies (smallest teams, sharpest pain of bad data reaching clients) before price-monitoring enterprises."
   },
   {
+    "id": "a3547f6cdf9b",
+    "date": "2026-10-06 14:40",
+    "title": "\"Inbox Zero for GitHub\" — Keyboard-First / Swipe-Based Triage Inbox for GitHub Notifications",
+    "domain": "developer experience / dev tools",
+    "problem": "OSS maintainers and senior engineers drown in GitHub notification volume (issues, PRs, review requests, CI, discussions across dozens of repos); GitHub's native inbox is weak at bulk triage, prioritization, and cross-repo context, so people either miss review requests or completely tune notifications out.",
+    "audience": "OSS maintainers (10-100+ watched repos), senior/staff engineers on platform teams, dev-tool authors, and GitHub Enterprise teams with heavy PR review loads.",
+    "solution": "A cross-platform triage inbox (desktop + mobile) with keyboard-first/swipe triage, AI-based de-noising & auto-labeling (bot-noise vs. needs-human), saved smart views, snooze/archive lifecycle, and review-request priority queues across GitHub + GitLab.",
+    "landscape": "- Octobox (octobox.io) is the mature incumbent: 4,486★, actively maintained (last push 2026-10-03), free for OSS, from $10/user/month for private repos via Open Collective/GitHub Marketplace. GitHub itself copied its UI ideas in 2020 (HN: \"GitHub ripped off Octobox for their new notifications UI\").\n- Gitify (gitify-app/gitify, 5,361★) — menu-bar GitHub notifications for macOS/Win/Linux, very actively maintained (pushed 2026-10-06). DevHub (10,135★, \"TweetDeck for GitHub\") is effectively abandoned since 2024 — evidence users churn between free tools.\n- A wave of 2026 entrants attacking the identical wedge: Octobud (Show HN 2026-02, open-source Mac app, Gmail-style keyboard-first inbox w/ automation rules — built by a GitHub employee \"drowning in GitHub notifications\"); GitSwipe (Show HN 2026-02, mobile \"Inbox Zero for GitHub Notifications\" swipe UI, GHE + multi-account); Prism (prismstudio.dev, 2026, GitHub+GitLab PR inbox \"to tame notification fatigue\"); Sift (Show HN 2026-03, \"local, de-noised GitHub notifications\"); Critic (getcritic.dev, 2025, \"improved inbox for GitHub pull requests\"); hubhook (24★, pushed 2026-10-04).\n- Graphite is a well-funded (VC-backed) company whose core product is a fast PR inbox + review workflow on top of GitHub — free for small teams, monetizing enterprises. GitHub itself shipped a redesigned notifications inbox (2020) and made a new productivity-focused dashboard default on 2026-09-28 (community discussion #208952), actively iterating on the native experience.\n- Historical pain is longstanding: \"Dear GitHub: Please Improve Your Notifications\" (HN 2011), drewdevault.com \"GitHub's new notifications: a case of regressive design\" (HN 2020, 127 pts).",
+    "competitors": "Octobox, Gitify, Graphite, Octobud, GitSwipe, Prism, Sift, Critic, hubhook, DevHub (abandoned), plus GitHub-native (new dashboard/inbox)",
+    "demand_signals": "",
+    "decision": "KILLED",
+    "decision_raw": "KILLED",
+    "uniqueness": 2,
+    "demand": 4,
+    "refinement": "Killed on saturation + platform risk, not on demand. The demand is validated repeatedly; but differentiation is thin (every angle — mobile swipe, Gmail-style keyboard inbox, local de-noising, cross-forge support, automation rules — is already claimed), willingness-to-pay is low (free OSS norm; Octobox at $10/u/mo is the ceiling), and GitHub itself is iterating natively (new default dashboard 2026-09-28) with Copilot positioned to absorb AI-triage features. The only unexplored sliver noticed: team/org-level notification load-balancing (routing review requests across humans like a support-ticket queue) — but Graphite's review queues and GitHub team-mentions partially cover it. Not enough wedge to justify entry."
+  },
+  {
     "id": "8ce8bacda92b",
     "date": "2026-10-05 01:41",
     "title": "Authorization Regression Testing & Permission-Impact Analysis Platform",
