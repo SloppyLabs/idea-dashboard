@@ -34,6 +34,23 @@
     "refinement": "Killed as a standalone product: competing head-on means fighting a free, good-design OSS tool plus orchestrators bundling the feature. The only viable residual wedges: (a) hosted *cross-machine/team* coordination server (Foremerge is explicitly single-machine — but it's their natural roadmap), (b) CI-native *behavioral* merge gate (speculative merge + semantic diff) — which Uber SubmitQueue and GitHub merge queues partially approximate via batched test runs, and (c) enterprise audit/compliance for agent fleets. All are adjacent to existing momentum rather than open space; revisit in 2 quarters to see if Foremerge stalls at local-only."
   },
   {
+    "id": "9816b856e9cc",
+    "date": "2026-10-12 09:30",
+    "title": "\"Anti-iLab\" — Modern Scheduling, Recharge-Billing & Compliance OS for University Core Facilities",
+    "domain": "research/university infrastructure vertical SaaS",
+    "problem": "Shared-instrument core facilities (microscopy, flow cytometry, genomics, NMR) run on iLab (Agilent) or Stratocore PPMS — enterprise tools users describe as slow, clunky, and monthslong to implement — or on Outlook calendars + Excel spreadsheets that can't reconcile scheduled vs. actual usage for grant-compliant 2 CFR 200.468 recharge billing.",
+    "audience": "Core-facility managers/ directors and research-administration offices at mid-size universities, research hospitals, and independent institutes (plus small biotech shared-lab ops).",
+    "solution": "A cloud-native, fast-deploying core-facility platform: calendar-grade booking UX, metered usage → tiered-rate invoicing → grant-account chargeback, badge/access-control integration, and one-click utilization + rate-review reporting for the biennial 2 CFR audit — deployable per-core without central IT.",
+    "landscape": "- CASRAI guide (casrai.org/guides/core-facility-management-software, updated 2026-07-18): iLab (Agilent, acquired 2016) and Stratocore PPMS (250+ orgs, born at Institut Pasteur/Rockefeller) are \"the two commercial platforms most consistently referenced\"; also flags the deciding factor is ERP/grants-system integration, not UI.\n- Genemod comparison article (genemod.net, 2026-07): iLab implementations \"can take months,\" institution-IT-dependent; lists 5 live alternatives — Stratocore, SUMS, Open IRIS (open-source), BookitLab, Genemod itself (free academic tier, scheduling-to-experiment focus).\n- Clustermarket has rebranded to **Calira** (clustermarket.com) and is attacking the adjacent biotech LabOps market — 12M+ bookings claimed, Moderna/Lilly/Century logos, \"Stop scheduling conflicts / track utilisation / plan CapEx\" positioning. A funded modern challenger already exists.\n- Pricing benchmark: Softwarefinder estimates iLab at **$8k–$30k/facility/year**; PPMS users on Reddit call it \"cheaper than other management systems\"; bookmylab was used at \"~$200/yr\"; OpenIRIS is free/non-profit. Every price tier is occupied.\n- Additional competitors surfaced organically in practitioner threads: Idea Elan, Agendo Science, Infinity X, Priority Software FBS (with LIMS + intake forms + invoicing).",
+    "competitors": "iLab/Agilent (enterprise default), Stratocore PPMS (#2), Calira/Clustermarket, Genemod, SUMS, BookitLab, Open IRIS, Idea Elan, Agendo Science, Infinity X, Priority Software FBS, bookmylab — saturated across enterprise, mid, low, and free tiers.",
+    "demand_signals": "",
+    "decision": "KILLED",
+    "decision_raw": "KILLED",
+    "uniqueness": 2,
+    "demand": 3,
+    "refinement": "Killed as framed. The decisive factor isn't product quality — it's that the winner is chosen by ERP/grants-office integration and institutional procurement, so a better UX wedge doesn't convert. Weak wedge candidates considered and rejected: utilization analytics (covered by vendor reporting + pivot tables), 2 CFR 200.468 rate-review automation (biennial, owned by grants offices, thin), migration/integration layer (services business, not SaaS). If anyone re-enters this space, the only viable angle would be the single-core/department tier below iLab's enterprise pricing floor — but SUMS/BookitLab/Genemod-free/OpenIRIS already crowd it."
+  },
+  {
     "id": "b3109db8d0ac",
     "date": "2026-10-11 02:45",
     "title": "\"Pay-Transparency Posting & Pay-Gap Compliance Engine\" — multi-jurisdiction salary-range posting compliance + EU Directive 2023/970 pay-gap/JPA readiness platform for mid-market employers",
