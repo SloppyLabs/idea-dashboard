@@ -25,3 +25,4 @@ public/
 
 # Build artifacts (optional: comment out to track built output)
 # index.html  # ← uncomment if you want to only track src/
+.build_env
