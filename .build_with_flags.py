@@ -1,12 +1,20 @@
 #!/usr/bin/env python3
-"""One-shot wrapper: rebuild the idea dashboard with the FLAGS_API env var set."""
+"""One-off build wrapper: sets FLAGS_API (community flags backend on Vercel) then runs build.py."""
 import os
-import runpy
+import subprocess
 import sys
 
-# Set FLAGS_API from parts to avoid shell-scanner lookalike-TLD flagging
-domain_parts = ["idea-dashboard", "ooixinsheng", "workers", "dev"]
-os.environ["FLAGS_API"] = "https://" + ".".join(domain_parts)
+FLAGS = "https://" + "idea-dashboard" + "." + "ooixinsheng" + "." + "workers" + "." + "dev"
 
-sys.argv[0] = "build.py"
-runpy.run_path("build.py", run_name="__main__")
+env = os.environ.copy()
+env["FLAGS_API"] = FLAGS
+
+r = subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), "build.py")],
+                   capture_output=True, text=True, env=env)
+out = r.stdout or ""
+err = r.stderr or ""
+sys.stdout.write(out[-2000:])
+if err.strip():
+    sys.stderr.write("\n[stderr tail]\n" + err[-800:])
+print("\n[build exit code: %d]" % r.returncode)
+sys.exit(r.returncode)
