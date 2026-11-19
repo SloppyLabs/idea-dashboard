@@ -27,3 +27,4 @@ public/
 # index.html  # ← uncomment if you want to only track src/
 .build_env
 .env.build
+.vercel
